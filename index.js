@@ -16,84 +16,41 @@ function playRound(getComputerChoice, getHumanChoice) {
   const computerSelection = getComputerChoice().toUpperCase();
   const humanSelection = getHumanChoice().toUpperCase();
 
-  if (computerSelection == "ROCK" && humanSelection == "PAPER") {
+  function displayResult(result) {
     console.log(
-      "Result -> You win:" +
-        "Computer choice:" +
+      "Result -> You " +
+        result +
+        ": Computer choice:" +
         computerSelection +
         ", Human Choice:" +
         humanSelection
     );
+  }
+
+  if (computerSelection == "ROCK" && humanSelection == "PAPER") {
+    displayResult("win");
     humanScore++;
   } else if (computerSelection == "ROCK" && humanSelection == "SCISSORS") {
-    console.log(
-      "Result -> You lose:" +
-        "Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+    displayResult("lose");
     computerScore++;
   } else if (computerSelection == "PAPER" && humanSelection == "SCISSORS") {
-    console.log(
-      "Result -> You win:" +
-        "Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+    displayResult("win");
     humanScore++;
   } else if (computerSelection == "PAPER" && humanSelection == "ROCK") {
-    console.log(
-      "Result -> You lose:" +
-        "Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+    displayResult("lose");
     computerScore++;
   } else if (computerSelection == "SCISSORS" && humanSelection == "PAPER") {
-    console.log(
-      "Result -> You lose:" +
-        "Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+    displayResult("lose");
     computerScore++;
   } else if (computerSelection == "SCISSORS" && humanSelection == "ROCK") {
-    console.log(
-      "Result -> You win:" +
-        "Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+    displayResult("win");
     humanScore++;
   } else if (computerSelection == "ROCK" && humanSelection == "ROCK") {
-    console.log(
-      "Result -> Draw:" +
-        "Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+    displayResult("guys are draw");
   } else if (computerSelection == "SCISSORS" && humanSelection == "SCISSORS") {
-    console.log(
-      "Result -> Draw:" +
-        "Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+    displayResult("guys are draw");
   } else if (computerSelection == "PAPER" && humanSelection == "PAPER") {
-    console.log(
-      "Result -> Draw:" +
-        "Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+    displayResult("guys are draw");
   }
 }
 
@@ -108,8 +65,12 @@ function playGame() {
   else {
     console.log("Game ends in draw");
   }
-  console.log("The Scores -> Computer score: "+ computerScore + ", Your score: "+ humanScore);
-  
+  console.log(
+    "The Scores -> Computer score: " +
+      computerScore +
+      ", Your score: " +
+      humanScore
+  );
 }
 
 playGame();
