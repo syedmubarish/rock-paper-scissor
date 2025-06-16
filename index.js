@@ -79,6 +79,7 @@ function playRound(getComputerChoice, getHumanChoice) {
 
 function playGame() {
   const box = document.createElement("div");
+  box.classList.add("button-box")
 
   const rock = document.createElement("button");
   rock.textContent = "ROCK";
