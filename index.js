@@ -71,7 +71,7 @@ function playRound(getComputerChoice, getHumanChoice) {
     }
 
     const finalResultBox = document.createElement('div')
-    finalResultBox.classList.add = "final-result-box"
+    finalResultBox.classList.add("final-result-box")
     finalResultBox.textContent = `The Winner is ${humanScore===5?'You':'Computer'}`
     document.body.appendChild(finalResultBox)
   }
