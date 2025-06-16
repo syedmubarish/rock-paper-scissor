@@ -5,46 +5,50 @@ function getComputerChoice() {
   else return "scissors";
 }
 
-function getHumanChoice() {
-  return prompt("Enter rock,paper or scissors");
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(getComputerChoice, getHumanChoice) {
   const computerSelection = getComputerChoice().toUpperCase();
-  const humanSelection = getHumanChoice
+  const humanSelection = getHumanChoice;
 
   function displayResult(result) {
-    console.log(
+    const resultBox = document.createElement("div");
+    resultBox.classList.add("round-result")
+    resultBox.textContent =
       "Result -> You " +
-        result +
-        ": Computer choice:" +
-        computerSelection +
-        ", Human Choice:" +
-        humanSelection
-    );
+      result +
+      ": Computer choice:" +
+      computerSelection +
+      ", Human Choice:" +
+      humanSelection +
+      "<<>>Scores You:"+
+      humanScore +
+      " PC:"+
+      computerScore
+      ;
+
+    document.body.appendChild(resultBox)
   }
 
   if (computerSelection == "ROCK" && humanSelection == "PAPER") {
-    displayResult("win");
     humanScore++;
+    displayResult("win");
   } else if (computerSelection == "ROCK" && humanSelection == "SCISSORS") {
-    displayResult("lose");
     computerScore++;
+    displayResult("lose");
   } else if (computerSelection == "PAPER" && humanSelection == "SCISSORS") {
-    displayResult("win");
     humanScore++;
+    displayResult("win");
   } else if (computerSelection == "PAPER" && humanSelection == "ROCK") {
-    displayResult("lose");
     computerScore++;
+    displayResult("lose");
   } else if (computerSelection == "SCISSORS" && humanSelection == "PAPER") {
-    displayResult("lose");
     computerScore++;
+    displayResult("lose");
   } else if (computerSelection == "SCISSORS" && humanSelection == "ROCK") {
-    displayResult("win");
     humanScore++;
+    displayResult("win");
   } else if (computerSelection == "ROCK" && humanSelection == "ROCK") {
     displayResult("guys are draw");
   } else if (computerSelection == "SCISSORS" && humanSelection == "SCISSORS") {
@@ -52,49 +56,52 @@ function playRound(getComputerChoice, getHumanChoice) {
   } else if (computerSelection == "PAPER" && humanSelection == "PAPER") {
     displayResult("guys are draw");
   }
+
+  if(humanScore === 5 || computerScore === 5){
+    
+    const roundResults = Array.from(document.querySelectorAll(".round-result"))
+    const buttonList = Array.from(document.querySelectorAll("button"))
+
+    for(const roundResult of roundResults){
+      roundResult.remove()
+    }
+
+    for(const button of buttonList){
+      button.remove()
+    }
+
+    const finalResultBox = document.createElement('div')
+    finalResultBox.classList.add = "final-result-box"
+    finalResultBox.textContent = `The Winner is ${humanScore===5?'You':'Computer'}`
+    document.body.appendChild(finalResultBox)
+  }
 }
 
 function playGame() {
+  const box = document.createElement("div");
+
+  const rock = document.createElement("button");
+  rock.textContent = "ROCK";
+
+  const paper = document.createElement("button");
+  paper.textContent = "PAPER";
+
+  const scissors = document.createElement("button");
+  scissors.textContent = "SCISSORS";
+
+  box.appendChild(rock);
+  box.appendChild(paper);
+  box.appendChild(scissors);
+
+  document.body.appendChild(box);
+
   
-  const box = document.createElement('div')
-
-
-  const rock = document.createElement('button')
-  rock.textContent = "ROCK"
-
-  const paper = document.createElement('button')
-  paper.textContent = "PAPER"
-  
-  const scissors = document.createElement('button')
-  scissors.textContent = "SCISSORS"
-
-  box.appendChild(rock)
-  box.appendChild(paper)
-  box.appendChild(scissors)
-
-  document.body.appendChild(box)
-  
-
-  box.addEventListener('click',(e)=>{
-    console.log(e.target.textContent);
+  box.addEventListener("click", (e) => {
+    playRound(getComputerChoice, e.target.textContent);
+    console.log(e.target.textContent,humanScore,computerScore);
     
-    playRound(getComputerChoice,e.target.textContent)
-  })
-
-  
-
-
-  if (computerScore > humanScore) console.log("The winner is: Computer!!");
-  else if (computerScore < humanScore) console.log("The winner is: You!!");
-  else {
-    console.log("Game ends in draw");
-  }
-  console.log(
-    "The Scores -> Computer score: " +
-      computerScore +
-      ", Your score: " +
-      humanScore
-  );
+    
+  });
 }
 
 playGame();
