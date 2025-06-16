@@ -14,7 +14,7 @@ let computerScore = 0;
 
 function playRound(getComputerChoice, getHumanChoice) {
   const computerSelection = getComputerChoice().toUpperCase();
-  const humanSelection = getHumanChoice().toUpperCase();
+  const humanSelection = getHumanChoice
 
   function displayResult(result) {
     console.log(
@@ -55,11 +55,35 @@ function playRound(getComputerChoice, getHumanChoice) {
 }
 
 function playGame() {
-  let round = 0;
-  while (round != 5) {
-    playRound(getComputerChoice, getHumanChoice);
-    round++;
-  }
+  
+  const box = document.createElement('div')
+
+
+  const rock = document.createElement('button')
+  rock.textContent = "ROCK"
+
+  const paper = document.createElement('button')
+  paper.textContent = "PAPER"
+  
+  const scissors = document.createElement('button')
+  scissors.textContent = "SCISSORS"
+
+  box.appendChild(rock)
+  box.appendChild(paper)
+  box.appendChild(scissors)
+
+  document.body.appendChild(box)
+  
+
+  box.addEventListener('click',(e)=>{
+    console.log(e.target.textContent);
+    
+    playRound(getComputerChoice,e.target.textContent)
+  })
+
+  
+
+
   if (computerScore > humanScore) console.log("The winner is: Computer!!");
   else if (computerScore < humanScore) console.log("The winner is: You!!");
   else {
