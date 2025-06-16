@@ -14,7 +14,7 @@ function playRound(getComputerChoice, getHumanChoice) {
 
   function displayResult(result) {
     const resultBox = document.createElement("div");
-    resultBox.classList.add("round-result")
+    resultBox.classList.add("round-result");
     resultBox.textContent =
       "Result -> You " +
       result +
@@ -22,13 +22,12 @@ function playRound(getComputerChoice, getHumanChoice) {
       computerSelection +
       ", Human Choice:" +
       humanSelection +
-      "<<>>Scores You:"+
+      "<<>>Scores You:" +
       humanScore +
-      " PC:"+
-      computerScore
-      ;
+      " PC:" +
+      computerScore;
 
-    document.body.appendChild(resultBox)
+    document.body.appendChild(resultBox);
   }
 
   if (computerSelection == "ROCK" && humanSelection == "PAPER") {
@@ -57,29 +56,30 @@ function playRound(getComputerChoice, getHumanChoice) {
     displayResult("guys are draw");
   }
 
-  if(humanScore === 5 || computerScore === 5){
-    
-    const roundResults = Array.from(document.querySelectorAll(".round-result"))
-    const buttonList = Array.from(document.querySelectorAll("button"))
+  if (humanScore === 5 || computerScore === 5) {
+    const roundResults = Array.from(document.querySelectorAll(".round-result"));
+    const buttonList = Array.from(document.querySelectorAll("button"));
 
-    for(const roundResult of roundResults){
-      roundResult.remove()
+    for (const roundResult of roundResults) {
+      roundResult.remove();
     }
 
-    for(const button of buttonList){
-      button.remove()
+    for (const button of buttonList) {
+      button.remove();
     }
 
-    const finalResultBox = document.createElement('div')
-    finalResultBox.classList.add("final-result-box")
-    finalResultBox.textContent = `The Winner is ${humanScore===5?'You':'Computer'}`
-    document.body.appendChild(finalResultBox)
+    const finalResultBox = document.createElement("div");
+    finalResultBox.classList.add("final-result-box");
+    finalResultBox.textContent = `The Winner is ${
+      humanScore === 5 ? "You" : "Computer"
+    }`;
+    document.body.appendChild(finalResultBox);
   }
 }
 
 function playGame() {
   const box = document.createElement("div");
-  box.classList.add("button-box")
+  box.classList.add("button-box");
 
   const rock = document.createElement("button");
   rock.textContent = "ROCK";
@@ -96,12 +96,8 @@ function playGame() {
 
   document.body.appendChild(box);
 
-  
   box.addEventListener("click", (e) => {
     playRound(getComputerChoice, e.target.textContent);
-    console.log(e.target.textContent,humanScore,computerScore);
-    
-    
   });
 }
 
